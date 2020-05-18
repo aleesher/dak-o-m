@@ -1,0 +1,15 @@
+image: "node:8"
+
+cache:
+  paths:
+    - node_modules/
+
+stages:
+  - test
+
+test:
+  before_script:
+    - npm install --silent
+  stage: test
+  script:
+    - npm run test

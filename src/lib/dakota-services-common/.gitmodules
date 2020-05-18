@@ -1,0 +1,3 @@
+[submodule "node-webservices"]
+	path = node-webservices
+	url = ../node-webservices

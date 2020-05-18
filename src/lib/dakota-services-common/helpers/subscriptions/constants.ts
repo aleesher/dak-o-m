@@ -1,0 +1,122 @@
+export const EVENTS = {
+  /*
+    Dakdata events
+   */
+  SERVICE_ORDER: {
+    UPDATE: 'serviceOrder_UPDATE',
+    UPDATED: 'serviceOrder_UPDATED',
+    LOCK: 'serviceOrder_LOCK',
+    UNLOCK: 'serviceOrder_UNLOCK',
+    STATUS_UPDATE: 'serviceOrder_STATUS_UPDATE'
+  },
+  ADDRESS_ROOF: {
+    ADDED: 'addressRoof_ADDED',
+    UPDATED: 'addressRoof_UPDATED',
+    DELETED: 'addressRoof_DELETED',
+    ROOF_RECALCULATED: 'addressRoof_ROOF_RECALCULATED',
+    ROOF_RECALCULATED_AFTER_UPDATE: 'addressRoof_ROOF_RECALCULATED_AFTER_UPDATE',
+    ADDRESS_RECALCULATED: 'addressRoof_ADDRESS_RECALCULATED',
+    SUBCOMPLEX_RECALCULATED: 'addressRoof_SUBCOMPLEX_RECALCULATED',
+    COMPLEX_RECALCULATED: 'addressRoof_COMPLEX_RECALCULATED',
+  },
+  
+  ROOF: {
+    ADDED: 'roof_ADDED',
+    UPDATED: 'roof_UPDATED',
+    RECALCULATED: 'roof_RECALCULATED',
+    RECALCULATED_AFTER_UPDATE: 'roof_RECALCULATED_AFTER_UPDATE',
+    ADDRESS_RECALCULATED: 'roof_ADDRESS_RECALCULATED',
+    SUBCOMPLEX_RECALCULATED: 'roof_SUBCOMPLEX_RECALCULATED',
+    COMPLEX_RECALCULATED: 'roof_COMPLEX_RECALCULATED',
+    CORRECTIVE_MAINTENANCE_RECALCULATED: 'roof_CORRECTIVE_MAINTENANCE_RECALCULATED',
+  },
+  
+  ROOF_UPDATE: {
+    ADDED: 'roofUpdate_ADDED',
+  },
+  
+  ADDRESS: {
+    ADDED: 'address_ADDED',
+    UPDATED: 'address_UPDATED',
+    DELETED: 'address_DELETED',
+    RECALCULATED: 'address_ADDRESS_RECALCULATED',
+    RECALCULATED_AFTER_UPDATE: 'address_RECALCULATED_AFTER_UPDATE',
+    ROOF_RECALCULATED: 'address_ROOF_RECALCULATED',
+    SUBCOMPLEX_RECALCULATED: 'address_SUBCOMPLEX_RECALCULATED',
+    COMPLEX_RECALCULATED: 'address_COMPLEX_RECALCULATED',
+    HOUSE_RECALCULATED: 'address_HOUSE_RECALCULATED',
+  },
+  
+  SUBCOMPLEX: {
+    ADDED: 'subComplex_ADDED',
+    UPDATED: 'subComplex_UPDATED',
+    DELETED: 'subComplex_DELETED',
+    RECALCULATED: 'subComplex_RECALCULATED',
+    RECALCULATED_AFTER_UPDATE: 'subComplex_RECALCULATED_AFTER_UPDATE',
+    ADDRESS_RECALCULATED: 'subComplex_ADDRESS_RECALCULATED',
+    ROOF_RECALCULATED: 'subComplex_ROOF_RECALCULATED',
+    COMPLEX_RECALCULATED: 'subComplex_COMPLEX_RECALCULATED',
+    HOUSE_RECALCULATED: 'subComplex_HOUSE_RECALCULATED',
+  },
+  
+  COMPLEX: {
+    UPDATED: 'complex_UPDATED',
+    COMPLEX_RECALCULATED: 'complex_COMPLEX_RECALCULATED',
+    SUBCOMPLEX_RECALCULATED: 'complex_SUBCOMPLEX_RECALCULATED',
+    ADDRESS_RECALCULATED: 'complex_ADDRESS_RECALCULATED',
+    ROOF_RECALCULATED: 'complex_ROOF_RECALCULATED',
+  },
+  
+  HOUSE: {
+    UPDATED: 'house_UPDATED',
+    ADDRESS_RECALCULATED: 'house_ADDRESS_RECALCULATED',
+    ROOF_RECALCULATED: 'house_ROOF_RECALCULATED',
+    SUBCOMPLEX_RECALCULATED: 'house_SUBCOMPLEX_RECALCULATED',
+  },
+  
+  /*
+    Dak Activity events
+   */
+  
+  ROOF_ROOF_CONSTRUCTION: {
+    ADDED: 'roofRoofConstruction_ADDED',
+    UPDATED: 'roofRoofConstruction_UPDATED',
+    DELETED: 'roofRoofConstruction_DELETED',
+  },
+
+  SERVICE_CONTRACT: {
+    UPDATE: 'serviceContract_UPDATE',
+    LOCK: 'serviceContract_LOCK',
+    UNLOCK: 'serviceContract_UNLOCK',
+    STATUS_UPDATE: 'serviceContract_STATUS_UPDATE'
+  },
+
+  WORK_ORDER: {
+    UPDATE: 'workOrder_UPDATE',
+    LOCK: 'workOrder_LOCK',
+    UNLOCK: 'workOrder_UNLOCK',
+    HIDE: 'workOrder_HIDE',
+    STATUS_UPDATE: 'workOrder_STATUS_UPDATE',
+    LOCK_EXPORT: 'workOrder_LOCK_EXPORT',
+    UNLOCK_EXPORT: 'workOrder_UNLOCK_EXPORT'
+  },
+
+  SERVICE_APPOINTMENT: {
+    LOCK: 'serviceAppointment_LOCK',
+    UNLOCK: 'serviceAppointment_UNLOCK',
+    STATUS_UPDATE: 'serviceAppointment_STATUS_UPDATE'
+  },
+
+  PLANNING: {
+    LOCK: 'planning_LOCK',
+    UNLOCK: 'planning_UNLOCK',
+    STATUS_UPDATE: 'planning_STATUS_UPDATE'
+  },
+  /*
+    Import Logs
+  */
+  IMPORT_LOGS: {
+    SEED: 'importLogs_Seed',
+    SEEDED: 'importLogs_Seeded'
+  }
+};

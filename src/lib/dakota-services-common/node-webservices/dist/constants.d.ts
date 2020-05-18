@@ -1,0 +1,14 @@
+export declare const NTLM_RESPONSE_AUTH_HEADER = "www-authenticate";
+export declare const CONNECTION_KEEP_ALIVE = "keep-alive";
+export declare const READ_MULTIPLE_ACTION = "ReadMultiple";
+export declare const XML_CONTENT_TYPE = "application/xml";
+export declare const PREFIX_MS_DYNAMICS = "urn:microsoft-dynamics-schemas/page";
+export declare const WEBSERVICE_RETRIES = 5;
+export declare const ReadMultiple_Result = "ReadMultiple_Result";
+export declare const ReadMultiple = "ReadMultiple";
+export declare const Update_Result = "Update_Result";
+export declare const Update = "Update";
+export declare const GetFile_Result = "GetFile_Result";
+export declare const GetFile = "GetFile";
+export declare const SOAPEnvelope = "Soap:Envelope";
+export declare const SOAPBody = "Soap:Body";

@@ -1,0 +1,772 @@
+scalar DateTime
+scalar Json
+
+enum StripSize {
+  Nvt
+  Size1
+  Size2
+  Size3
+  Size4
+}
+
+enum ProjectType {
+  Single
+  Main_Project
+  Sub_Project
+}
+
+enum ReporterType {
+  BEWONER
+  OPDRACHTGEVER
+  BEHEERDE
+}
+
+enum PriorityType {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum ContractStatus {
+  Applied
+  Offered
+  Order
+  Invoicing_Allowed
+  Expired
+}
+
+enum AppointmentStatus {
+  No_Appointment
+  Not_Planned
+  Scheduled
+  Done
+}
+
+enum ContractInvoiceType {
+  Dynamic
+  Installments
+}
+
+enum ContractIndexMethod {
+  Geen
+  Standaard
+  Handmatig
+}
+
+enum ContractInstallmentType {
+  Contract
+  Object
+  Consumption
+}
+
+enum ContractInvoicePeriod {
+  Forehand
+  Afterwards
+}
+
+enum ServiceOrderCommentType {
+  Internal_Text
+  Problem_Text
+}
+
+enum MomentEntityType {
+  SO
+  SC
+  WO
+}
+
+enum EventType {
+  InternalEvent
+  Listener
+}
+
+type ServiceOrder {
+  id: ID! @id
+  code: String! @unique
+  globalId: String
+  conceptId: String
+  companyName: String
+  callerCode: String
+  orderType: String
+  description: String
+  ownerCode: String
+  customerCode: String
+  customerName: String
+  billingCode: String
+  customerFeature: String
+  reference: String
+  commissionDate: String
+  serviceLocationCode: String
+  name: String
+  address: String
+  postalCode: String
+  city: String
+  sourceType: String
+  globalDimensionCode: String
+  territoryCode: String
+  orderDate: String
+  orderTime: String
+  budgetHours: Float
+  expectedHours: Float
+  durationTime: Float
+  isFirmPlanned: Boolean
+  startDate: String
+  startTime: String
+  endDate: String
+  endTime: String
+  priority: PriorityType
+  nextDeadline: String
+  status: String
+  actualReferencePoint: String
+  actualReferencePointDescription: String
+  employeeCode: String
+  employeeName: String
+  roofingPartnerName: String
+  detectorType: String
+  notInDakota: Boolean
+  gdbServiceOrderTrackAndTrace: Boolean
+  gdbServiceOrderKTO: Boolean
+  ktoFiture: Float
+  serviceType: String
+  invoicedPrice: Float
+  orderAmount: Float
+  serviceControlPeriodDate: String
+  isRemoteControl: Boolean
+  firstDeadline: String
+  gdbServiceOrderStartDate: String
+  dateExecuted: String
+  gdbServiceOrderInvoicedDate: String
+  isExportToFSA2: Boolean
+  exportToFSADate: String
+  isSignatureHasValue: Boolean
+  signedBy: String
+  isSendReport: Boolean
+  isFinishedFieldService: Boolean
+  cratedBy: String
+  creationDate: DateTime
+  updateDate: String
+  updatedBy: String
+  customerRemark: String
+  internalRemark: String
+  correctiveMaintenanceRemark: String
+  agreementDate: String
+  signature: String
+  contactPersonCode: String
+  contactPersonGender: String
+  orderCodeCustomer: String
+  countryCode: String
+  serviceContractCode: String
+  orderManager: String
+  assignedTo: String
+  servicePackage: Float
+  problemDescription: String
+  problemCause: String
+  problemSolution: String
+  baseServiceOrderCode: String
+  isBaseServiceOrder: Boolean
+  hasAdditionalServiceOrder: Boolean
+  actualHours: Float
+  isPublished: Boolean! @default(value: false)
+  isLocked: Boolean! @default(value: false)
+  lockedBy: String
+  orderNumber: String
+  isExportedLocked: Boolean! @default(value: false)
+
+  # calculated fields
+  complexId: ID
+  complexCode: String
+  complexName: String
+  subComplexCode: String
+  subComplexName: String
+  roofCode: String
+  workType: String
+  statusReasonDescription: String
+  readyDateNew: String
+  roofPartner: String
+  roofPartnerName: String
+  roofWarranty: Boolean @default(value: false)
+  roofIsAGutter: Boolean @default(value: false)
+  amountOfMeasures: Int
+  roofingPartDescription: String
+  cause: String
+  measureDescription: String
+  consequentialDamageIndoor: String
+  roofTypeCode: String
+  condition: Int
+  roofingPartCategories: String
+  roofingPartCodes: String
+  contractCode: String
+  invoiceType: String
+  billingAddress: String
+  roofNumber: String
+
+  # Relations
+  workOrders: [WorkOrder!]
+  activityLogs: [ActivityLog!]
+  # todo: add federation relation
+  #  roofActivities: [RoofActivity!]
+  serviceTexts: [ServiceText!]
+  customerFeedbacks: [CustomerFeedback!]
+  activityLogHistories: [ActivityLogHistory!]
+  reporter: Reporter
+  serviceOrderComments: [ServiceOrderComment!]
+  serviceAppointment: ServiceAppointment
+
+  isBlocked: Boolean! @default(value: false)
+
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
+}
+
+type WorkOrder {
+  id: ID! @id
+  code: String! @unique
+  status: String
+  sourceCompanyName: String
+  sourceType: String
+  sourceCode: String
+  description: String
+  resourceType: String
+  resourceCode: String
+  resourceCompanyName: String
+  isMainResource: Boolean
+  serviceStatus: String
+  statusReasonDescription: String
+  isFinishedService: Boolean
+  firstPossibleStartDate: String
+  lastPossibleStartDate: String
+  starDate: String
+  endDate: String
+  expectedHours: Float
+  durationTime: Float
+  isDuringClockTime: Boolean
+  isFirmPlanned: Boolean
+  isExportToFSA: Boolean
+  exportToFSADate: String
+  actualReferencePoint: String
+  assignedTo: String
+  globalDimensionCode: String
+  serviceContractCode: String
+  orderManager: String
+  address: String
+  postalCode: String
+  city: String
+  customerCode: String
+  jobDescription: String
+  soCode: String
+  soCallerCode: String
+  soOrderType: String
+  soDescription: String
+  soContactCode: String
+  soContactPersonCode: String
+  soCustomerFeature: String
+  soBillingCode: String
+  soReference: String
+  soCommissionDate: String
+  soServiceLocationCode: String
+  soOrderCodeCustomer: String
+  soName: String
+  soName2: String
+  soSourceType: String
+  soServiceContractCode: String
+  soGlobalDimensionCode: String
+  soTerritoryCode: String
+  soOrderDate: String
+  soOrderTime: String
+  soBudgetHours: Float
+  soExpectedHours: Float
+  soDurationTime: Float
+  soIsFirmPlanned: Boolean
+  soStarDate: String
+  soStarTime: String
+  soEndDate: String
+  soEndTime: String
+  soPriority: PriorityType
+  soNextDeadline: String
+  soStatus: String
+  soActualReferencePoint: String
+  soOrderManager: String
+  soAssignedTo: String
+  soEmployeeCode: String
+  roofingPartnerName: String
+  detectorType: String
+  notInDakota: String
+  soServiceType: String
+  soInvoicedPrice: Float
+  soServicePackage: String
+  soOrderAmount: Int
+  soServiceControlPeriodDate: String
+  soIsRemoteControl: Boolean
+  soCountryCode: String
+  soProblemDescription: String
+  soProblemCause: String
+  soProblemSolution: String
+  firstDeadline: String
+  gdbServiceOrderStartDate: String
+  dateExecuted: String
+  gdbServiceOrderInvoicedDate: String
+  isExportToFSA2: Boolean
+  soExportToFSADate: String
+  hasSignature: Boolean
+  planAhead: String
+  startTime: String
+  endTime: String
+  orderIsSent: Boolean
+  isLocked: Boolean! @default(value: false)
+  lockedBy: String
+  isExportBlocked: Boolean! @default(value: false)
+  updatedByUserId: String
+
+  # Relations
+  serviceOrder: ServiceOrder
+  activityLog: ActivityLog
+  moment: Moment
+
+  isBlocked: Boolean! @default(value: false)
+
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
+}
+
+type ServiceText {
+  id: ID! @id
+  code: String! @unique
+  tableName: String
+  type: String
+  lineNumber: Int
+  date: String
+  comment: String
+  createdBy: String
+
+  # Relations
+  serviceOrder: ServiceOrder
+
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
+}
+
+type ServiceStatus {
+  id: ID! @id
+  code: String! @unique
+  type: String
+  description: String
+
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
+}
+
+type ActivityLog {
+  id: ID! @id
+  code: String! @unique
+  description: String
+  apply: String
+  colour: String
+  eventType: String
+  statusPurchQuote: String
+  statusPurchOrder: String
+  statusServiceCall: String
+  statusServiceOrder: String
+  fieldService: String
+  blockModifyServiceOrder: Boolean
+  skipExportToFSA: Boolean
+  sendStatusUpdateMail: Boolean
+  sendMailWorkSheet: Boolean
+  publishOnServicePOrtal: Boolean
+  sendMainToSubcontractor: Boolean
+  updateWOStartTime: Boolean
+  updateWOEndTime: Boolean
+  naForActualReferencePoint: Boolean
+
+  # Relations
+  serviceOrder: ServiceOrder
+
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
+}
+
+type ActivityLogHistory {
+  id: ID! @id
+  type: String
+  code: String
+  registerDate: DateTime
+  employeeCode: String
+
+  # Relations
+  serviceOrder: ServiceOrder
+
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
+}
+
+type KimInformation {
+  id: ID! @id
+  projectNumber: String! @unique
+  projectLeader: String
+  projectLeaderPhoto: String
+  foreman: String
+  foremanPhoto: String
+  email: String
+  phone: String
+  startDate: String
+  schedule: String
+  deliveryDate: String
+  noiseAndDrilling: String
+  noiseAndGravel: String
+  noiseAndDemolition: String
+  vibrationDemolition: String
+  dustAndWipe: String
+  dustAndDemolish: String
+  smellAndBitumen: String
+  smellAndCoatings: String
+  crane: String
+  container: String
+  constructionSite: String
+  photo: String
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
+}
+
+enum ReportIsNecessary {
+  NietNodig
+  WilIkHebben
+  LooptAchter
+}
+
+type Project {
+  id: ID! @id
+  projectNumber: String! @unique
+  location: String
+  employeeCode: String
+  ownerCode: String
+  employeeName: String
+  mainProject: String
+  description: String
+  contractValue: Float
+  additionalTotalAmount: Float
+  percentageDone: Int
+  percentageDoneDate: String
+  percentageDoneMinValue: Int
+  address: String
+  city: String
+  complexExists: Boolean
+  complexId: ID
+  complexCode: String
+  complexName: String
+  complexPhotoNo: String
+  complexPhotoUrl: String
+  amountSpent: Float
+  spentVsBudgetted: Int
+  amountOnReceipt: Float
+  receiptIsNecessary: Boolean
+  invoiced: Float
+  qualityMeasurementIsNecessary: ReportIsNecessary
+  progressReportIsNecessary: ReportIsNecessary
+  deliveryReportIsNecessary: ReportIsNecessary
+  qualityMeasurementIsComplete: Boolean
+  progressReportIsComplete: Boolean
+  deliveryReportIsComplete: Boolean
+  additionalWorkDescription1: String
+  additionalWorkAmount1: Float
+  additionalWorkDescription2: String
+  additionalWorkAmount2: Float
+  additionalWorkDescription3: String
+  additionalWorkAmount3: Float
+  additionalWorkDescription4: String
+  additionalWorkAmount4: Float
+  additionalWorkDescription5: String
+  additionalWorkAmount5: Float
+  additionalWorkDescription6: String
+  additionalWorkAmount6: Float
+  qualityMeasurementDocumentNo: String
+  progressReportDocumentNo: String
+  deliveryReportDocumentNo: String
+  visitReportDocumentNo: String
+  incidentReportDocumentNo: String
+  deviationFormDocumentNo: String
+  qualityMeasurementDocumentUrl: String
+  progressReportDocumentUrl: String
+  deliveryReportDocumentUrl: String
+  visitReportDocumentUrl: String
+  incidentReportDocumentUrl: String
+  deviationFormDocumentUrl: String
+  isMainProject: Boolean
+  expectedStartDate: String
+  expectedEndDate: String
+  budgetHours: Int
+  numberOfDays: Int
+  numberOfHourlyWorkBudget: Int
+  subcontractorName: String
+  projectMemo: String
+
+  projectType: ProjectType
+  postalCode: String
+  salesPersonCode: String
+  estimatorCode: String
+  projectManagerCode: String
+  siteManagerCode: String
+  team: String
+  status: String
+  statusModificationDate: String
+  billToCustomerNo: String
+  commissionDate: String
+  startDate: String
+  endDate: String
+  warrantyEndDate: String
+  workType: String
+  roofingPartnerName: String
+  isAppProject: Boolean! @default(value: false)
+
+  # relations
+  kimInformation: KimInformation
+  subProjects: [Project!]
+}
+
+type ServiceOrderUpdateNotification {
+  id: ID! @id
+  orderOwnerEmail: String
+  orderOwnerPhone: String
+  linkToken: String @unique
+  smsText: String
+  stage: String!
+  emailHtmlBody: String
+  emailSubject: String
+  companyEmail: String
+  smsDeliveryStatus: Boolean! @default(value: false)
+  emailDeliveryStatus: Boolean! @default(value: false)
+  linkExpirationDate: DateTime
+  serviceOrderId: ID!
+
+  # Relations
+  serviceOrder: ServiceOrder
+  customerFeedback: CustomerFeedback
+
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
+}
+
+type CustomerFeedback {
+  id: ID! @id
+  rating: Int
+  stage: String
+  skipped: Boolean
+  comment: String
+  customerRole: Json
+  serviceOrderId: ID!
+  notificationId: ID!
+
+  # Relations
+  serviceOrder: ServiceOrder
+
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
+}
+
+type Faq {
+  id: ID! @id
+  question: String
+  answer: String
+  header: String
+  projectNumber: String!
+}
+
+type Reporter {
+  id: ID! @id
+  code: String! @unique
+  name: String
+  surname: String
+  phone: String
+  email: String
+  onBehalfOf: String
+  type: ReporterType
+  reference: String
+  priority: PriorityType
+  workText: String
+  internalText: String
+  adviceText: String
+  description: String
+  isTrackAndTraceActive: Boolean! @default(value: false)
+}
+
+type ServiceAppointment {
+  id: ID! @id
+  code: String! @unique
+  orderType: String
+  orderDate: String
+  status: String #todo: should be changed to  AppointmentStatus later
+  roofCodes: [String] @scalarList(strategy: RELATION)
+  isLocked: Boolean! @default(value: false)
+  lockedBy: String
+  #relations
+  serviceContract: ServiceContract
+  serviceOrders: [ServiceOrder]
+
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
+}
+
+type ServiceContract {
+  id: ID! @id
+  code: String! @unique
+  description: String
+  roofAddress: String
+  roofCity: String
+  status: ContractStatus
+  orderDate: String
+  startingDate: String
+  endingDate: String
+  terminationDate: String
+  customerCode: String
+  contactPersonCode: String
+  contactPersonCodes: [String!] @scalarList(strategy: RELATION)
+  name: String
+  name2: String
+  address: String
+  postcode: String
+  city: String
+  contactName: String
+  phoneNo: String
+  email: String
+  billToCustomerNoContr: String
+  billToNameContract: String
+  billToAddressContract: String
+  billToPostCodeContract: String
+  billToCityContract: String
+  billToContactPersonContr: String
+  billToContPersNameCtr: String
+  globalDimension1Code: String
+  initialSalesAmount: Float
+  maintenanceInvoiceMgtGetContractAmntByDateRecWorkDate: Float
+  lastIndexDate: String
+  contractManager: String
+  contractManagerName: String
+  yourReference: String
+  blocked: Boolean
+  firstYearMaintenance: Int
+  maintenanceMonth: Int
+  acknowledgedSO: Int
+  createdSO: Int
+  openedSO: Int
+  readySO: Int
+  percentageReady: Int
+  workingHours: Float
+  spendHours: Float
+  hoursSpentLastYear: Float
+  totalCost: Float
+  billedAmount: Float
+  invoicedUntil: String
+  m2Dak: Float
+  m2DakReady: Float
+  m2DakReadyPercent: String
+  reportDocument: String
+  installmentsBasedOnProgress: Boolean
+  invoiceType: ContractInvoiceType
+  installmentType: ContractInstallmentType
+  invoicePeriod: ContractInvoicePeriod
+  currencyCode: String
+  serviceIndexMethod: String
+  invoiceTextInstallments: String
+  outsourced: Boolean
+  lastExecutedBy: String
+  isLocked: Boolean! @default(value: false)
+  lockedBy: String
+  #relations
+  ServiceAppointments: [ServiceAppointment]
+  serviceOrders: [ServiceOrder]
+}
+
+type ServiceContractTerm {
+  id: ID! @id
+  serviceContractCode: String
+  lineNo: Int
+  invoiceFrom: String
+  endingDate: String
+  invoicedUntil: String
+  invoiceInterval: String
+  invoicePostponePeriod: String
+  nextInvoicingDate: String
+  progressPercent: Int
+  gvMaintInvMngmntCUGetContractCurrencyServiceContractCode: String
+  invoiceDirectly: Boolean
+  gvMaintInvMngmntCUGetInstallmAmntByDateRec: String
+  gvMaintInvMngmntCUGetInstallmAmntLCYByDateRec: String
+  description: String
+  invoicingVIACollectiveList: String
+  invoicePeriod: ContractInvoicePeriod
+  chargeable: Boolean
+  invoicedPrice: Float
+  invoiceInProcess: Float
+  creditMemoInProcess: Float
+  invoicePayment: Float
+  globalDimension1Code: String
+  customerCode: String
+  billToCustomerCode: String
+}
+type ServiceContractIndex {
+  id: ID! @id
+  indexMethod: ContractIndexMethod
+  indexTime: String
+  indexedAmount: String
+  indexFigure: String
+  contractNumber: String
+  contractAmount: String
+
+  estimations: [ ServiceContractEstimation ]
+
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
+}
+
+type ServiceContractEstimation {
+  id: ID! @id
+  initialSalesAmount: Float
+  billedAmount: Float
+
+  #relations
+  serviceContractIndex: ServiceContractIndex
+  serviceContract: ServiceContract
+
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
+}
+
+type ServiceOrderComment {
+  id: ID! @id
+  orderCommentType: ServiceOrderCommentType
+  text: String
+  authorCode: String
+  date: String
+
+  #relations
+  serviceOrder: ServiceOrder
+}
+
+type Moment {
+  id: ID! @id
+  code: Int!
+  type: MomentEntityType
+  navisionCode: Int
+  status: String
+  actionId: String
+  hasSoStatusChange: Boolean! @default(value: true)
+  hasWoPlanningStatusChange: Boolean! @default(value: true)
+  hasScStatusChange: Boolean! @default(value: true)
+  isWOPlanningBlocked: Boolean! @default(value: true)
+  isSCBlocked: Boolean! @default(value: true)
+  isSOBlocked: Boolean! @default(value: true)
+  isExportBlocked: Boolean! @default(value: true)
+}
+
+type Event {
+  id: ID! @id
+  name: String
+  #later should be relation to Action schema
+  actionId: String!
+  type: EventType! @default(value: InternalEvent)
+  order: Int
+}
+
+type Action {
+  id: ID! @id
+  name: String
+  title: String
+}

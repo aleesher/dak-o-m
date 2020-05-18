@@ -1,0 +1,39 @@
+version: '3'
+services:
+  prisma:
+    image: prismagraphql/prisma:1.34
+    container_name: ${PRISMA_CONTAINER_NAME}
+    restart: always
+    ports:
+    - "${PRISMA_PORT}:${PRISMA_PORT}"
+    environment:
+      PRISMA_CONFIG: |
+        port: ${PRISMA_PORT}
+        # uncomment the next line and provide the env var PRISMA_MANAGEMENT_API_SECRET=my-secret to activate cluster security
+        managementApiSecret: ${PRISMA_SECRET}
+        databases:
+          default:
+            connector: mysql
+            host: ${DB_HOST}
+            user: ${DB_USER}
+            password: ${DB_PASSWORD}
+            rawAccess: true
+            port: ${DB_PORT}
+            migrations: true
+  mysql:
+    image: mysql:5.7
+    container_name: ${DB_CONTAINER_NAME}
+    restart: always
+
+    # uncomment to open the database port for external access
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      # this will be needed when db port changed
+      - ./.docker:/etc/mysql/conf.d
+      - ./.docker/mysql:/var/lib/mysql
+volumes:
+  mysql:

@@ -1,0 +1,36 @@
+{
+  "name": "dakota-services-common",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pre-install": "git submodule update --init --recursive",
+    "post-install": "npm install ./node-webservices"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.com:second-company/msq/dakota-services-common.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-cache-inmemory": "^1.6.3",
+    "apollo-client": "^2.6.4",
+    "apollo-link-http": "^1.5.15",
+    "apollo-server": "^2.8.1",
+    "aws-sdk": "^2.521.0",
+    "ejs": "^2.6.1",
+    "graphql-shield": "^6.1.0",
+    "lodash": "^4.17.15",
+    "mime": "^2.4.4",
+    "node-webservices": "file:node-webservices",
+    "nodemailer": "^6.2.1",
+    "subscriptions-transport-ws": "^0.9.16",
+    "ws": "^7.1.2"
+  },
+  "devDependencies": {
+    "@types/node": "^12.7.1"
+  }
+}

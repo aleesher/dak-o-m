@@ -1,0 +1,32 @@
+<html>
+<head>
+    <style>
+        html {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+        }
+        p {
+            font-size: 12px;
+        }
+        h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+
+        ul,
+        ol {
+            padding-left: 15px;
+        }
+    </style>
+</head>
+<body>
+<%= name %>, <%= email %>,
+ <h4>Question for service order ${serviceOrder.code}</h4>
+<br/>
+<p><%= question %> </p>
+</br>
+reply to
+<b><%=  email %></b>.
+</body>
+</html>

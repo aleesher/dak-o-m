@@ -1,0 +1,80 @@
+{
+  "name": "dakota-services-order-management",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/second-company/msq/dakota-services-order-management.git"
+  },
+  "scripts": {
+    "dev": "ts-node-dev --respawn ./src/index.ts",
+    "try": "ts-node-dev --respawn ./src/resolvers/serviceOrder/try.ts",
+    "start": "node ./dist/index.js",
+    "build": "rm -rf dist && tsc && npm run copy-files",
+    "up": "docker-compose up",
+    "down": "docker-compose down",
+    "prisma": "cd src && prisma deploy --env-file ./../.env ",
+    "prisma-token": "cd src && prisma token --env-file ./../.env",
+    "prisma-staged": "cd src && prisma generate",
+    "prisma-generate": "cd src && prisma generate",
+    "seed": "cd src && prisma seed --env-file ./../.env",
+    "reset": "cd src && prisma reset --env-file ./../.env",
+    "pre-install": "git submodule update --init --recursive",
+    "post-install": "npm install ./src/lib/dakota-services-common && npm install ./src/lib/dakota-services-common/node-webservices",
+    "update-submodules": "git submodule update --remote ./src/lib/dakota-services-common",
+    "copy-files": "copyfiles -u 1 \"src/**/*.js\" dist"
+  },
+  "keywords": [],
+  "author": "Second Company",
+  "license": "ISC",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/*.{ts,tsx}": [
+      "prettier --parser typescript --write",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "@apollo/federation": "^0.11.0",
+    "@types/faker": "^4.1.5",
+    "@types/node": "^11.11.5",
+    "agentkeepalive": "^4.0.2",
+    "apollo-server": "^2.4.8",
+    "apollo-server-express": "^2.4.8",
+    "copyfiles": "^2.1.1",
+    "cors": "^2.8.5",
+    "dakota-services-common": "file:src/lib/dakota-services-common",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "faker": "^4.1.0",
+    "graphql": "^14.1.1",
+    "graphql-import": "^0.7.1",
+    "graphql-middleware": "^4.0.1",
+    "graphql-shield": "^6.1.0",
+    "graphql-subscriptions": "^1.1.0",
+    "graphql-tools": "^4.0.4",
+    "httpntlm": "^1.7.6",
+    "mime": "^2.4.4",
+    "moment": "^2.24.0",
+    "node-cron": "^2.0.3",
+    "node-webservices": "file:src/lib/dakota-services-common/node-webservices",
+    "prisma-binding": "^2.3.10",
+    "prisma-client-lib": "^1.30.0",
+    "request-promise": "^4.2.4",
+    "subscriptions-transport-ws": "^0.9.16",
+    "ts-node-dev": "^1.0.0-pre.32",
+    "typescript": "^3.3.4000",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.5",
+    "prettier": "^1.16.4",
+    "prisma": "^1.34.6"
+  }
+}
